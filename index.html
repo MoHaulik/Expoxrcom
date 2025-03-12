@@ -3,144 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ExpoXR: Elevating Trade Shows & Corporate Events with Immersive XR Solutions in Scandinavia." />
-  <meta name="keywords" content="XR, WebXR, Immersive, Corporate Events, Trade Shows, Scandinavia" />
-  <title>ExpoXR | Immersive XR Solutions for Trade Shows & Events</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="ExpoXR offers immersive WebXR solutions for trade shows, summits and corporate events across Scandinavia. Experience the future of XR in high-end business environments." />
+  <meta name="keywords" content="WebXR, XR, Trade Shows, Corporate Events, Scandinavian, VR, AR, ExpoXR" />
+  <title>ExpoXR | Immersive WebXR Solutions for B2B Events</title>
+  <!-- You can add Google Fonts here if desired -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Navigation -->
-  <header>
+  <!-- Header & Navigation -->
+  <header class="site-header">
     <nav class="navbar">
       <div class="logo">
-        <img src="ExpoLogo.png" alt="ExpoXR Logo" />
+        <a href="#hero"><img src="ExpoLogo.png" alt="ExpoXR Logo" /></a>
       </div>
-      <ul class="nav-menu">
+      <ul class="nav-links">
         <li><a href="#hero">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#solutions">Solutions</a></li>
-        <li><a href="#stories">Success</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#success">Success</a></li>
+        <li><a href="#blog">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section id="hero">
-    <video class="bg-video" autoplay muted loop>
-      <source src="Video.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-    <div class="hero-overlay"></div>
+    <div class="video-container">
+      <video autoplay muted loop id="bg-video">
+        <source src="Video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-overlay"></div>
+    </div>
     <div class="hero-content">
       <img src="ExpoLogo.png" alt="ExpoXR Logo" class="hero-logo" />
-      <h1>Elevate Your Event Experience</h1>
-      <p>Immersive XR Solutions for Trade Shows, Summits, and Corporate Events across Scandinavia</p>
-      <a href="#solutions" class="cta">Discover Our Solutions</a>
+      <h1>Experience the Future of XR</h1>
+      <p>Immersive WebXR Solutions for Trade Shows, Summits & Corporate Events across Scandinavia</p>
+      <a href="#demo" class="cta-btn">Experience Demo</a>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="section">
+  <section id="about" class="section about-section">
     <div class="container">
-      <h2>About ExpoXR</h2>
+      <h2>Elevate Your Event with ExpoXR</h2>
       <p>
-        At ExpoXR, we blend cutting-edge technology with creative design to transform exhibitions and events into immersive experiences. Based in Copenhagen and serving Denmark, Sweden, Norway, and Finland, our solutions empower brands to showcase their products and services like never before.
+        At ExpoXR, we specialize in creating captivating and interactive XR experiences that redefine trade shows, summits, and corporate events. Our solution seamlessly integrates with your existing systems to showcase your products in stunning 3D and immersive environments.
       </p>
+      <a href="#contact" class="cta-btn">Schedule a Consultation</a>
     </div>
   </section>
 
-  <!-- Solutions Section -->
-  <section id="solutions" class="section">
+  <!-- Demo Section -->
+  <section id="demo" class="section demo-section">
     <div class="container">
-      <h2>Our Solutions</h2>
-      <div class="solutions-grid">
-        <div class="solution">
-          <h3>Interactive Product Showcases</h3>
-          <p>
-            Engage your audience with high-quality 3D models, videos, and interactive XR content—all accessible directly through the browser.
-          </p>
-        </div>
-        <div class="solution">
-          <h3>XR Hardware Rentals</h3>
-          <p>
-            Enhance your event with state-of-the-art XR headsets available for rent. Experience seamless integration and full support at your trade show or corporate event.
-          </p>
-        </div>
-        <div class="solution">
-          <h3>Bespoke Event Experiences</h3>
-          <p>
-            From concept to execution, we deliver tailored XR experiences that captivate audiences and leave a lasting impression.
-          </p>
-        </div>
+      <h2>Interactive WebXR Demo</h2>
+      <p>
+        Discover how our immersive WebXR demo can transform your next event. Engage your audience like never before with interactive, high-quality XR content.
+      </p>
+      <div class="demo-placeholder">
+        <p>Interactive Demo Coming Soon</p>
       </div>
-      <a href="#contact" class="cta">Request a Consultation</a>
+      <a href="#contact" class="cta-btn">Book a Live Demo</a>
     </div>
   </section>
 
   <!-- Success Stories Section -->
-  <section id="stories" class="section">
+  <section id="success" class="section success-section">
     <div class="container">
       <h2>Success Stories</h2>
-      <div class="stories-grid">
-        <div class="story">
+      <div class="stories">
+        <div class="story-card">
           <h3>Stockholm Tech Expo</h3>
           <p>
-            "ExpoXR revolutionized our booth experience—engaging visitors and extending interaction time by 3x."
+            "ExpoXR's immersive demo significantly boosted our engagement. Visitors spent 3x longer at our booth!"
           </p>
         </div>
-        <div class="story">
+        <div class="story-card">
           <h3>Oslo Automotive Summit</h3>
           <p>
-            "Our XR vehicle demo resulted in a 150% increase in visitor engagement compared to traditional displays."
+            "Our 3D vehicle showcase in XR led to a dramatic increase in audience interaction and lead generation."
           </p>
         </div>
-        <div class="story">
+        <div class="story-card">
           <h3>Copenhagen Medical Fair</h3>
           <p>
-            "The interactive training modules provided by ExpoXR enhanced our visitor experience without the need for app downloads."
+            "WebXR allowed us to deliver interactive training and product demos without any app downloads."
           </p>
         </div>
+      </div>
+      <a href="#contact" class="cta-btn">Start Your Success Story</a>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="section blog-section">
+    <div class="container">
+      <h2>Insights & Innovations</h2>
+      <div class="blog-posts">
+        <article class="blog-post">
+          <h3>How XR is Revolutionizing Trade Shows in Scandinavia</h3>
+          <p>
+            Learn how immersive XR experiences are redefining trade shows and corporate events across Denmark, Sweden, Norway, and Finland.
+          </p>
+          <a href="#" class="read-more">Read More</a>
+        </article>
+        <article class="blog-post">
+          <h3>From 2D to 3D: The Future of Digital Engagement</h3>
+          <p>
+            Explore the evolution of digital engagement with XR technology and discover new opportunities for your business.
+          </p>
+          <a href="#" class="read-more">Read More</a>
+        </article>
+        <article class="blog-post">
+          <h3>5 Ways XR Can Boost Your Event Engagement</h3>
+          <p>
+            Discover strategies to captivate your audience and enhance the impact of your events using cutting-edge XR solutions.
+          </p>
+          <a href="#" class="read-more">Read More</a>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="section">
+  <section id="contact" class="section contact-section">
     <div class="container">
       <h2>Contact Us</h2>
       <p>
-        Let’s discuss how we can create an unforgettable immersive experience for your next event.
+        Ready to elevate your next event? Get in touch with our XR experts to explore tailored solutions for your business.
       </p>
       <form id="contact-form" action="#" method="post">
-        <div class="form-group">
+        <div class="form-field">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" required placeholder="Your Name" />
+          <input type="text" id="name" name="name" required />
         </div>
-        <div class="form-group">
+        <div class="form-field">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="Your Email" />
+          <input type="email" id="email" name="email" required />
         </div>
-        <div class="form-group">
+        <div class="form-field">
           <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" placeholder="Your Phone" />
+          <input type="tel" id="phone" name="phone" />
         </div>
-        <div class="form-group">
+        <div class="form-field">
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea>
+          <textarea id="message" name="message" rows="5" required></textarea>
         </div>
-        <button type="submit" class="cta">Send Message</button>
+        <button type="submit" class="cta-btn">Send Message</button>
       </form>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="site-footer">
     <div class="container">
       <p>&copy; 2025 ExpoXR. All Rights Reserved.</p>
       <div class="social-links">
@@ -151,6 +173,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
