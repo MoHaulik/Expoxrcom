@@ -286,6 +286,49 @@ button.cta-btn {
   color: var(--primary-color);
 }
 
+/* AR Section */
+.ar-section {
+  background: #f9f9f9;
+  padding: 80px 0;
+}
+
+.ar-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.ar-section p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.ar-models {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.ar-model {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: var(--dark-color);
+}
+
+.ar-model img {
+  width: 200px;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.ar-model:hover img {
+  transform: scale(1.05);
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .nav-links {
@@ -311,7 +354,7 @@ button.cta-btn {
     padding: 40px 20px;
   }
 
-  .stories, .blog-posts {
+  .stories, .blog-posts, .ar-models {
     flex-direction: column;
     align-items: center;
   }
