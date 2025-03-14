@@ -6,9 +6,8 @@
   <meta name="description" content="ExpoXR offers immersive WebXR solutions for trade shows, summits and corporate events across Scandinavia. Experience the future of XR in high-end business environments." />
   <meta name="keywords" content="WebXR, XR, Trade Shows, Corporate Events, Scandinavian, VR, AR, ExpoXR" />
   <title>ExpoXR | Immersive WebXR Solutions for B2B Events</title>
-  <!-- You can add Google Fonts here if desired -->
   <link rel="stylesheet" href="style.css" />
-  <!-- Include model-viewer for WebXR support -->
+  <!-- Include model-viewer for 3D and AR support -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
@@ -22,7 +21,7 @@
         <li><a href="#hero">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#demo">Demo</a></li>
-        <li><a href="#ar">AR</a></li>
+        <li><a href="#showcase">Showcase</a></li>
         <li><a href="#success">Success</a></li>
         <li><a href="#blog">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -77,32 +76,35 @@
     </div>
   </section>
 
-  <!-- AR Section (both versions wrapped in one container) -->
-  <section id="ar" class="section ar-section">
+  <!-- 3D Showcase Section -->
+  <section id="showcase" class="section showcase-section">
     <div class="container">
-      <!-- AR for iOS (native AR Quick Look) -->
-      <div id="ar-ios">
-        <h2>View in AR (iOS)</h2>
-        <p>Tap a model to view it in Augmented Reality on your iOS device.</p>
-        <div class="ar-models">
-          <a href="Cheese_Danish.usdz" rel="ar" class="ar-model">
-            <img src="Cheese_Danish-preview.jpg" alt="Cheese Danish AR Model" />
-            <p>Cheese Danish</p>
-          </a>
-          <a href="Gearbox_Conical.usdz" rel="ar" class="ar-model">
-            <img src="Gearbox_Conical-preview.jpg" alt="Gearbox Conical AR Model" />
-            <p>Gearbox Conical</p>
-          </a>
+      <h2>3D Model Showcase</h2>
+      <p>View our models in 3D. Click the “Open in AR” button below each to launch the AR experience on your device.</p>
+      <div class="model-showcase">
+        <!-- Cheese Danish Model -->
+        <div class="model-item">
+          <model-viewer id="model-cheese"
+                        src="Cheese_Danish.glb"
+                        ios-src="Cheese_Danish.usdz"
+                        alt="Cheese Danish"
+                        camera-controls
+                        auto-rotate
+                        style="width: 300px; height: 300px;">
+          </model-viewer>
+          <button class="ar-button" data-model-id="model-cheese" data-ios="Cheese_Danish.usdz">Open in AR</button>
         </div>
-      </div>
-      <!-- AR for WebXR (for Android & desktop) -->
-      <div id="ar-webxr">
-        <h2>View in AR (WebXR)</h2>
-        <p>Experience the models in Augmented Reality using WebXR (for Android and Desktop).</p>
-        <div class="ar-models">
-          <!-- Note: You'll need to provide a GLB version for WebXR -->
-          <model-viewer src="Cheese_Danish.glb" ios-src="Cheese_Danish.usdz" alt="Cheese Danish" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate style="width: 300px; height: 300px;"></model-viewer>
-          <model-viewer src="Gearbox_Conical.glb" ios-src="Gearbox_Conical.usdz" alt="Gearbox Conical" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate style="width: 300px; height: 300px;"></model-viewer>
+        <!-- Gearbox Conical Model -->
+        <div class="model-item">
+          <model-viewer id="model-gearbox"
+                        src="Gearbox_Conical.glb"
+                        ios-src="Gearbox_Conical.usdz"
+                        alt="Gearbox Conical"
+                        camera-controls
+                        auto-rotate
+                        style="width: 300px; height: 300px;">
+          </model-viewer>
+          <button class="ar-button" data-model-id="model-gearbox" data-ios="Gearbox_Conical.usdz">Open in AR</button>
         </div>
       </div>
     </div>
