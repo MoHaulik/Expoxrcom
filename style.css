@@ -191,18 +191,14 @@ body {
   text-align: center;
 }
 
-.model-item model-viewer {
+.three-container {
   border: 1px solid #ccc;
   border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-
-.model-item model-viewer:hover {
-  transform: scale(1.05);
+  overflow: hidden;
+  margin-bottom: 15px;
 }
 
 .ar-button {
-  margin-top: 15px;
   padding: 10px 20px;
   background: var(--primary-color);
   color: var(--light-color);
