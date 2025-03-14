@@ -1,6 +1,6 @@
 // Import Three.js and GLTFLoader as ES modules
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.module.js';
-import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/GLTFLoader.js';
+import { GLTFLoader } from 'https://threejs.org/examples/jsm/loaders/GLTFLoader.js';
 
 // Helper function to initialize a Three.js scene in a given container with a model loaded from modelUrl
 function initThreeScene(containerId, modelUrl) {
@@ -9,10 +9,17 @@ function initThreeScene(containerId, modelUrl) {
 
   // Create scene, camera, and renderer
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+  );
   camera.position.set(0, 1, 3);
-  
+  camera.lookAt(0, 0, 0);
+
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
 
@@ -31,11 +38,14 @@ function initThreeScene(containerId, modelUrl) {
       const model = gltf.scene;
       scene.add(model);
 
-      // Optionally center the model
+      // Center the model in the scene
       const box = new THREE.Box3().setFromObject(model);
       const center = new THREE.Vector3();
       box.getCenter(center);
       model.position.sub(center);
+
+      // Optionally, scale the model if necessary:
+      // model.scale.set(0.5, 0.5, 0.5);
 
       // Animation loop
       function animate() {
@@ -74,12 +84,12 @@ mobileMenu.addEventListener('click', () => {
 
 // AR button event handling: on click, detect the device and launch AR accordingly.
 const arButtons = document.querySelectorAll('.ar-button');
-arButtons.forEach(button => {
+arButtons.forEach((button) => {
   button.addEventListener('click', () => {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const iosSrc = button.getAttribute('data-ios');
     const glbSrc = button.getAttribute('data-glb');
-    
+
     if (isIOS) {
       // For iOS: create a temporary anchor to launch AR Quick Look
       const anchor = document.createElement('a');
