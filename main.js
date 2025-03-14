@@ -6,11 +6,16 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks.classList.toggle('active');
   });
 
-  // Hide AR section if not on an iOS device
-  if (!/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-    const arSection = document.getElementById('ar');
-    if (arSection) {
-      arSection.style.display = 'none';
-    }
+  // Device detection: show iOS AR experience on iOS, otherwise show WebXR
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const arIosSection = document.getElementById('ar-ios');
+  const arWebXRSection = document.getElementById('ar-webxr');
+
+  if (isIOS) {
+    if (arIosSection) arIosSection.style.display = 'block';
+    if (arWebXRSection) arWebXRSection.style.display = 'none';
+  } else {
+    if (arIosSection) arIosSection.style.display = 'none';
+    if (arWebXRSection) arWebXRSection.style.display = 'block';
   }
 });
