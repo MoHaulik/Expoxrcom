@@ -7,8 +7,9 @@
   <meta name="keywords" content="WebXR, XR, Trade Shows, Corporate Events, Scandinavian, VR, AR, ExpoXR" />
   <title>ExpoXR | Immersive WebXR Solutions for B2B Events</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Include model-viewer for 3D and AR support -->
+  <!-- Include model-viewer for AR activation on non-iOS -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <!-- Three.js will be imported in main.js as an ES6 module -->
 </head>
 <body>
   <!-- Header & Navigation -->
@@ -84,27 +85,17 @@
       <div class="model-showcase">
         <!-- Cheese Danish Model -->
         <div class="model-item">
-          <model-viewer id="model-cheese"
-                        src="Cheese_Danish.glb"
-                        ios-src="Cheese_Danish.usdz"
-                        alt="Cheese Danish"
-                        camera-controls
-                        auto-rotate
-                        style="width: 300px; height: 300px;">
-          </model-viewer>
-          <button class="ar-button" data-model-id="model-cheese" data-ios="Cheese_Danish.usdz">Open in AR</button>
+          <div id="three-container-cheese" class="three-container" style="width: 300px; height: 300px;"></div>
+          <button class="ar-button" data-ios="Cheese_Danish.usdz" data-glb="Cheese_Danish.glb">
+            Open in AR
+          </button>
         </div>
         <!-- Gearbox Conical Model -->
         <div class="model-item">
-          <model-viewer id="model-gearbox"
-                        src="Gearbox_Conical.glb"
-                        ios-src="Gearbox_Conical.usdz"
-                        alt="Gearbox Conical"
-                        camera-controls
-                        auto-rotate
-                        style="width: 300px; height: 300px;">
-          </model-viewer>
-          <button class="ar-button" data-model-id="model-gearbox" data-ios="Gearbox_Conical.usdz">Open in AR</button>
+          <div id="three-container-gearbox" class="three-container" style="width: 300px; height: 300px;"></div>
+          <button class="ar-button" data-ios="Gearbox_Conical.usdz" data-glb="Gearbox_Conical.glb">
+            Open in AR
+          </button>
         </div>
       </div>
     </div>
@@ -209,6 +200,7 @@
     </div>
   </footer>
 
-  <script src="main.js"></script>
+  <!-- Use type="module" so we can import Three.js and GLTFLoader in main.js -->
+  <script type="module" src="main.js"></script>
 </body>
 </html>
