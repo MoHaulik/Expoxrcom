@@ -1,118 +1,91 @@
-// Import Three.js and GLTFLoader as ES modules
-import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.module.js';
-import { GLTFLoader } from 'https://threejs.org/examples/jsm/loaders/GLTFLoader.js';
+// main.js
 
-// Helper function to initialize a Three.js scene in a given container with a model loaded from modelUrl
-function initThreeScene(containerId, modelUrl) {
+// Import Three.js and GLTFLoader from a CDN for ES6 modules
+import * as THREE from 'https://unpkg.com/three@0.152.2/build/three.module.js';
+import { GLTFLoader } from 'https://unpkg.com/three@0.152.2/examples/jsm/loaders/GLTFLoader.js';
+
+// Function to initialize a Three.js scene in a given container and load a GLB model
+function initScene(containerId, glbPath) {
   const container = document.getElementById(containerId);
-  if (!container) return;
+  if (!container) {
+    console.error(`Container with ID ${containerId} not found.`);
+    return;
+  }
 
   // Create scene, camera, and renderer
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    1000
-  );
-  camera.position.set(0, 1, 3);
-  camera.lookAt(0, 0, 0);
-
+  const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
 
-  // Lighting
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+  // Add lighting to the scene
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
   directionalLight.position.set(1, 1, 1);
   scene.add(directionalLight);
 
-  // Load the GLB model
+  // Load the GLB model using GLTFLoader
   const loader = new GLTFLoader();
   loader.load(
-    modelUrl,
+    glbPath,
     (gltf) => {
-      const model = gltf.scene;
-      scene.add(model);
-
-      // Center the model in the scene
-      const box = new THREE.Box3().setFromObject(model);
-      const center = new THREE.Vector3();
-      box.getCenter(center);
-      model.position.sub(center);
-
-      // Optionally, scale the model if necessary:
-      // model.scale.set(0.5, 0.5, 0.5);
-
-      // Animation loop
-      function animate() {
-        requestAnimationFrame(animate);
-        model.rotation.y += 0.005;
-        renderer.render(scene, camera);
-      }
-      animate();
+      scene.add(gltf.scene);
     },
     undefined,
     (error) => {
-      console.error('Error loading model:', error);
+      console.error("Error loading model: ", error);
+      // Fallback: add a simple rotating cube if the model fails to load
+      const geometry = new THREE.BoxGeometry();
+      const material = new THREE.MeshStandardMaterial({ color: 0xff5722 });
+      const cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
+      // Animate the fallback cube
+      const fallbackAnimate = function () {
+        requestAnimationFrame(fallbackAnimate);
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      };
+      fallbackAnimate();
     }
   );
 
-  // Update renderer and camera on window resize
-  window.addEventListener('resize', () => {
-    if (container) {
-      camera.aspect = container.clientWidth / container.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
-    }
-  });
+  // Position the camera
+  camera.position.z = 2;
+
+  // Render loop
+  const animate = function () {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+  };
+  animate();
 }
 
-// Initialize 3D previews for both models
-initThreeScene('three-container-cheese', 'Cheese_Danish.glb');
-initThreeScene('three-container-gearbox', 'Gearbox_Conical.glb');
+// Initialize the scenes for each model container
+initScene('three-container-cheese', 'Cheese_Danish.glb');
+initScene('three-container-gearbox', 'Gearbox_Conical.glb');
 
-// Mobile menu toggle
+// Mobile menu toggle functionality
 const mobileMenu = document.querySelector('.mobile-menu');
 const navLinks = document.querySelector('.nav-links');
 mobileMenu.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// AR button event handling: on click, detect the device and launch AR accordingly.
-const arButtons = document.querySelectorAll('.ar-button');
-arButtons.forEach((button) => {
+// AR button functionality for launching AR experience
+document.querySelectorAll('.ar-button').forEach((button) => {
   button.addEventListener('click', () => {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const iosSrc = button.getAttribute('data-ios');
-    const glbSrc = button.getAttribute('data-glb');
+    const fileToOpen = isIOS ? button.getAttribute('data-ios') : button.getAttribute('data-glb');
 
-    if (isIOS) {
-      // For iOS: create a temporary anchor to launch AR Quick Look
-      const anchor = document.createElement('a');
-      anchor.setAttribute('href', iosSrc);
-      anchor.setAttribute('rel', 'ar');
-      document.body.appendChild(anchor);
-      anchor.click();
-      document.body.removeChild(anchor);
-    } else {
-      // For non-iOS: dynamically create a hidden model-viewer to activate AR
-      const tempAR = document.createElement('model-viewer');
-      tempAR.setAttribute('src', glbSrc);
-      tempAR.setAttribute('ios-src', iosSrc);
-      tempAR.setAttribute('ar', '');
-      tempAR.style.display = 'none';
-      document.body.appendChild(tempAR);
-      // Give it a short delay then call activateAR
-      setTimeout(() => {
-        if (typeof tempAR.activateAR === 'function') {
-          tempAR.activateAR();
-        }
-        document.body.removeChild(tempAR);
-      }, 100);
-    }
+    // Create a temporary anchor element to trigger AR Quick Look or Scene Viewer
+    const anchor = document.createElement('a');
+    anchor.setAttribute('rel', 'ar');
+    anchor.setAttribute('href', fileToOpen);
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
   });
 });
